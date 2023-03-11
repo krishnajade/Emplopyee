@@ -13,20 +13,20 @@
     <EditText
         android:id="@+id/email_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Email"/>
 
     <EditText
         android:id="@+id/age_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Age"
         android:inputType="number"/>
 
     <EditText
         android:id="@+id/designation_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Designation"/>
 
     <Button

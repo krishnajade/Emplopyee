@@ -1,5 +1,4 @@
 package com.example.employee.models;
-
 public class Employee {
     private final int id;
     private String name;
@@ -7,8 +6,6 @@ public class Employee {
     private final int age;
     private final String designation;
     private final String created;
-
-    // getters and setters
 
     public Employee(int id, String name, String email, int age, String designation, String created) {
         this.id = id;
@@ -18,7 +15,6 @@ public class Employee {
         this.designation = designation;
         this.created = created;
     }
-
     public int getId() {
         return id;
     }

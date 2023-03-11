@@ -5,15 +5,14 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.employee.models.Record;
 import com.example.employee.services.RecordApiService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -71,33 +70,57 @@ public class AddRecordActivity extends AppCompatActivity {
         RecordApiService apiService = retrofit.create(RecordApiService.class);
 
         // Make the API call using the RecordApiService instance
-        Call<Void> call = apiService.addRecord(recordToAdd);
+        Call<ResponseBody> call = apiService.addRecord(recordToAdd);
 
-        assert false;
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                if (response.isSuccessful()) {
-                    // Handle successful API response
-                    Log.d(TAG, "Add record response: " + response.toString());
-                    finish(); // Finish the activity and go back to main activity
-                } else {
-                    // Handle API error
-                    Log.e(TAG, "Add record error: " + response.toString());
-                    Toast.makeText(AddRecordActivity.this,
-                            "Failed to add record: " + response.message(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
+        call.enqueue(new Callback<ResponseBody>() {
+
+
+
+//            @Override
+//public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+//    if (response.isSuccessful()) {
+//        // Handle successful API response
+//        Log.d(TAG, "Add record response: " + response.body());
+//        finish(); // Finish the activity and go back to main activity
+//    } else {
+//        // Handle API error
+//        Log.e(TAG, "Add record error: " + response.toString());
+//        Toast.makeText(AddRecordActivity.this,
+//                "Failed to add record: " + response.message(),
+//                Toast.LENGTH_SHORT).show();
+//    }
+//}
+@Override
+public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+    if (response.isSuccessful()) {
+        // Handle successful API response
+        Log.d(TAG, "Add record response: " + response.body());
+        Toast.makeText(AddRecordActivity.this,
+                "Record added successfully!",
+                Toast.LENGTH_SHORT).show();
+        finish(); // Finish the activity and go back to main activity
+    } else {
+        // Handle API error
+        Log.e(TAG, "Add record error: " + response.toString());
+        Toast.makeText(AddRecordActivity.this,
+                "Failed to add record: " + response.message(),
+                Toast.LENGTH_SHORT).show();
+    }
+}
 
             @Override
-            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 // Handle network error
-                Log.e(TAG, "Add record network error: " + t.toString());
+                Log.e(TAG, "Add record response body: " + call.request().body());
+                Log.e(TAG, "Add record network error: " + t);
                 Toast.makeText(AddRecordActivity.this,
                         "Network error: " + t.getMessage(),
                         Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddRecordActivity.this,
+                        "Network error: " + t.getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
-    }
-}
+    }}
+
+
