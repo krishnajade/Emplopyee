@@ -5,15 +5,17 @@ public class Employee {
     private final String email;
     private final int age;
     private final String designation;
-    private final String created;
+    private final String created = null;
+    private String serverResponse;
 
-    public Employee(int id, String name, String email, int age, String designation, String created) {
+
+    public Employee(int id, String name, String email, int age, String designation) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
         this.designation = designation;
-        this.created = created;
+
     }
     public int getId() {
         return id;
@@ -35,5 +37,8 @@ public class Employee {
     }
     public String getCreated() {
         return created;
+    }
+    public String getServerResponse() {
+        return serverResponse;
     }
 }

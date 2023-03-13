@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         updateBtn.setOnClickListener(view -> {
-            // Code to handle update button click
+            Intent intent = new Intent(MainActivity.this, UpdateRecordByIdActivity.class);
+            startActivity(intent);
         });
 
         showAllBtn.setOnClickListener(view -> {
